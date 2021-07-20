@@ -322,7 +322,7 @@ class Flanker:
             if (rnd == 0) or (rnd == 3):
                 condition = "Congruent"
             else:
-                    condition = "Incongruent"
+                condition = "Incongruent"
             croix.draw()
             win.flip()
             core.wait(0.5)
@@ -350,7 +350,7 @@ class Flanker:
                 congrats = visual.TextStim(
                     win=win,
                     name='congrats',
-                    text="Bravo ! \n Vous avez " + str(score) + "/" + str(i+1),
+                    text="Bravo ! \n Vous avez " + str(score) + "/" + str(i + 1),
                     font='Arial',
                     units='height',
                     pos=(0, 0),
@@ -370,7 +370,7 @@ class Flanker:
                 missed = visual.TextStim(
                     win=win,
                     name='missed',
-                    text="Dommage... \n Vous avez " + str(score) + "/" + str(i+1),
+                    text="Dommage... \n Vous avez " + str(score) + "/" + str(i + 1),
                     font='Arial',
                     units='height',
                     pos=(0, 0),
@@ -503,7 +503,7 @@ class Flanker:
             resp, rt = self.get_response()
             if resp == good_ans:
                 score = score + 1
-                good_answer=True
+                good_answer = True
             elif resp != good_ans:
                 good_answer = False
             else:

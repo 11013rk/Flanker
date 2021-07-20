@@ -61,7 +61,6 @@ logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a f
 # definir toutes les foncitons d'abord
 # class
 # practice : dans le practice : etre indulgent, si "faux" dire "attention, il faut faire ceci..." si vrai, "bravo !"
-# voulez-vous vous entraîner une autre fois ? (oui/non)
 # run
 # à la fin, faire runavec le temps de depart etc.
 
