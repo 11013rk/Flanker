@@ -26,15 +26,16 @@ else:
 
 # make a text file to save data
 fileName = expInfo['participant'] + '_' + expInfo['date']
-dataFile = open('Flankercsv/' + fileName + '.csv', 'w')  # a simple text file with 'comma-separated-values'
+cwd = os.getcwd()  # Get the current working directory (cwd)
+files = os.listdir(cwd)  # Get all the files in that directory
+print("Files in %r: %s" % (cwd, files))
+dataFile = open('/Users/icrin/PycharmProjects/FlankerTask/Flankercsv/' + str(fileName) + '.csv',
+                'w')  # a simple text file with
+# 'comma-separated-values'
 dataFile.write('no_trial, id_candidate, visual, condition, ans_candidate, good_ans, correct, '
                'practice, reaction_time, time_stamp\n')
 
-filename = _thisDir + os.sep + u'Flanker/Flankerlog/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
-
-# save a log file for detail verbose info
-logFile = logging.LogFile(filename + '.log', level=logging.EXP)
-logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a file
+filename = _thisDir + os.sep + u'Flanker/Flankerlog/%s_%s' % (expInfo['participant'], expInfo['date'])
 
 
 class Flanker:
@@ -45,7 +46,7 @@ class Flanker:
 
     def run(self):
         global good_answer
-        L = ["<<<<<<<<<", ">>>><>>>>", ">>>><>>>>", ">>>>>>>>"]
+        L = ["<<<<<<<<<", ">>>><>>>>", "<<<<><<<<", ">>>>>>>>"]
         rnd = 0
         score = 0
         i = 0
@@ -96,21 +97,6 @@ class Flanker:
             win=win,
             name='exemple',
             text='Commençons par un exemple',
-            font='Arial',
-            units='height',
-            pos=(0, 0),
-            height=0.06,
-            wrapWidth=None,
-            ori=0,
-            color='white',
-            colorSpace='rgb',
-            opacity=1,
-            languageStyle='LTR',
-            depth=0.0)
-        attention = visual.TextStim(
-            win=win,
-            name='attention',
-            text="S'il-vous-plaît, veillez à n'appuyer qu'une seule fois sur les boutons \n pour ne pas fausser les résultats",
             font='Arial',
             units='height',
             pos=(0, 0),
@@ -189,7 +175,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -204,7 +190,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -219,52 +205,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
-            wrapWidth=None,
-            ori=0,
-            color='white',
-            colorSpace='rgb',
-            opacity=1,
-            languageStyle='LTR',
-            depth=0.0)
-        congrats = visual.TextStim(
-            win=win,
-            name='congrats',
-            text="Bravo ! \n Vous avez" + str(score) + "/" + str(i),
-            font='Arial',
-            units='height',
-            pos=(0, 0),
-            height=0.2,
-            wrapWidth=None,
-            ori=0,
-            color='white',
-            colorSpace='rgb',
-            opacity=1,
-            languageStyle='LTR',
-            depth=0.0)
-        missed = visual.TextStim(
-            win=win,
-            name='missed',
-            text="Dommage... \n Vous avez" + str(score) + "/" + str(i),
-            font='Arial',
-            units='height',
-            pos=(0, 0),
-            height=0.2,
-            wrapWidth=None,
-            ori=0,
-            color='white',
-            colorSpace='rgb',
-            opacity=1,
-            languageStyle='LTR',
-            depth=0.0)
-        results = visual.TextStim(
-            win=win,
-            name='results',
-            text="Vous avez obtenu" + str(score) + "/3",
-            font='Arial',
-            units='height',
-            pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -279,7 +220,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -290,11 +231,11 @@ class Flanker:
         pret_V2 = visual.TextStim(
             win=win,
             name='pret_V2',
-            text='Appuyez sur entrée si vous voulez le recommencer, \n et sur "a" ou "p" pour commencer le mini-jeu',
+            text='Appuyez sur "a" ou "p" pour commencer le mini-jeu',
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -309,7 +250,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -323,7 +264,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -338,7 +279,7 @@ class Flanker:
             font='Arial',
             units='height',
             pos=(0, 0),
-            height=0.2,
+            height=0.06,
             wrapWidth=None,
             ori=0,
             color='white',
@@ -356,9 +297,6 @@ class Flanker:
         exemple.draw()
         win.flip()
         core.wait(3)
-        attention.draw()
-        win.flip()
-        core.wait(3)
         attention2.draw()
         win.flip()
         core.wait(3)
@@ -371,94 +309,151 @@ class Flanker:
         bonne_chance.draw()
         win.flip()
         core.wait(2)
-        training = True
-        while training == True:
-            for i in range(3):
-                rnd = randint(0, 3)
-                if (rnd == 0) or (rnd == 1):
-                    good_ans = "a"
-                else:
-                    good_ans = "p"
-                if (rnd == 0) or (rnd == 3):
-                    condition = "Congruent"
-                else:
+        for i in range(3):
+            rnd = randint(0, 3)
+            if (rnd == 0) or (rnd == 1):
+                good_ans = "a"
+            else:
+                good_ans = "p"
+            if (rnd == 0) or (rnd == 3):
+                condition = "Congruent"
+            else:
                     condition = "Incongruent"
-                croix.draw()
-                win.flip()
-                core.wait(0.5)
-                arrows.draw()
-                win.flip()
-                resp, rt = self.get_response()
-                if resp == good_ans:
-                    score = score + 1
-                    congrats.draw()
-                    win.flip()
-                    core.wait(5)
-                elif resp != good_ans:
-                    good_answer = False
-                    missed.draw()
-                    win.flip()
-                    core.wait(5)
-                else:
-                    good_answer = None
-                dataFile.write(
-                    str(i)
-                    +
-                    ','
-                    +
-                    expInfo['participant']
-                    +
-                    ','
-                    +
-                    str(L[rnd])
-                    +
-                    ','
-                    +
-                    str(condition)
-                    +
-                    ','
-                    +
-                    str(resp)
-                    +
-                    ','
-                    +
-                    str(good_ans)
-                    +
-                    ','
-                    +
-                    str(good_answer)
-                    +
-                    ','
-                    +
-                    'yes'
-                    +
-                    ','
-                    +
-                    str(round(rt, 2))
-                    +
-                    ','
-                    +
-                    str(round(time.time() - start, 2))
-                    +
-                    '\n')
-                silence.draw()
-                win.flip()
-                rnd_time = randint(8, 14)
-                core.wait(rnd_time * 10 ** -3)
-
-            results.draw()
+            croix.draw()
             win.flip()
-            core.wait(5)
-            tutoriel_end.draw()
-            win.flip()
-            core.wait(3)
-            pret_V2.draw()
+            core.wait(0.5)
+            arrows = visual.TextStim(
+                win=win,
+                name='arrows',
+                text=L[rnd],
+                font='Arial',
+                units='height',
+                pos=(0, 0),
+                height=0.06,
+                wrapWidth=None,
+                ori=0,
+                color='white',
+                colorSpace='rgb',
+                opacity=1,
+                languageStyle='LTR',
+                depth=0.0)
+            arrows.draw()
             win.flip()
             resp, rt = self.get_response()
-            if resp == "return":
-                training = True
-            elif (resp == 'a') or (resp == 'p'):
-                training = False
+            if resp == good_ans:
+                good_answer = True
+                score = score + 1
+                congrats = visual.TextStim(
+                    win=win,
+                    name='congrats',
+                    text="Bravo ! \n Vous avez " + str(score) + "/" + str(i+1),
+                    font='Arial',
+                    units='height',
+                    pos=(0, 0),
+                    height=0.06,
+                    wrapWidth=None,
+                    ori=0,
+                    color='white',
+                    colorSpace='rgb',
+                    opacity=1,
+                    languageStyle='LTR',
+                    depth=0.0)
+                congrats.draw()
+                win.flip()
+                core.wait(2)
+            elif resp != good_ans:
+                good_answer = False
+                missed = visual.TextStim(
+                    win=win,
+                    name='missed',
+                    text="Dommage... \n Vous avez " + str(score) + "/" + str(i+1),
+                    font='Arial',
+                    units='height',
+                    pos=(0, 0),
+                    height=0.06,
+                    wrapWidth=None,
+                    ori=0,
+                    color='white',
+                    colorSpace='rgb',
+                    opacity=1,
+                    languageStyle='LTR',
+                    depth=0.0)
+                missed.draw()
+                win.flip()
+                core.wait(2)
+            else:
+                good_answer = None
+            dataFile.write(
+                str(i)
+                +
+                ','
+                +
+                expInfo['participant']
+                +
+                ','
+                +
+                str(L[rnd])
+                +
+                ','
+                +
+                str(condition)
+                +
+                ','
+                +
+                str(resp)
+                +
+                ','
+                +
+                str(good_ans)
+                +
+                ','
+                +
+                str(good_answer)
+                +
+                ','
+                +
+                'yes'
+                +
+                ','
+                +
+                str(round(rt, 2))
+                +
+                ','
+                +
+                str(round(time.time() - start, 2))
+                +
+                '\n')
+            silence.draw()
+            win.flip()
+            rnd_time = randint(8, 14)
+            core.wait(rnd_time * 10 ** -3)
+        croix.draw()
+        win.flip()
+        core.wait(1)
+        results = visual.TextStim(
+            win=win,
+            name='results',
+            text="Vous avez obtenu " + str(score) + "/3",
+            font='Arial',
+            units='height',
+            pos=(0, 0),
+            height=0.06,
+            wrapWidth=None,
+            ori=0,
+            color='white',
+            colorSpace='rgb',
+            opacity=1,
+            languageStyle='LTR',
+            depth=0.0)
+        results.draw()
+        win.flip()
+        core.wait(5)
+        tutoriel_end.draw()
+        win.flip()
+        core.wait(3)
+        pret_V2.draw()
+        win.flip()
+        event.waitKeys(keyList=['a', 'p'], maxWait=10, clearEvents=True)
         doigts.draw()
         win.flip()
         core.wait(5)
@@ -482,11 +477,27 @@ class Flanker:
             croix.draw()
             win.flip()
             core.wait(0.5)
+            arrows = visual.TextStim(
+                win=win,
+                name='arrows',
+                text=L[rnd],
+                font='Arial',
+                units='height',
+                pos=(0, 0),
+                height=0.06,
+                wrapWidth=None,
+                ori=0,
+                color='white',
+                colorSpace='rgb',
+                opacity=1,
+                languageStyle='LTR',
+                depth=0.0)
             arrows.draw()
             win.flip()
             resp, rt = self.get_response()
             if resp == good_ans:
                 score = score + 1
+                good_answer=True
             elif resp != good_ans:
                 good_answer = False
             else:
