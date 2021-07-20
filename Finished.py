@@ -30,8 +30,7 @@ dataFile = open('Flankercsv/' + fileName + '.csv', 'w')  # a simple text file wi
 dataFile.write('no_trial, id_candidate, visual, condition, ans_candidate, good_ans, correct, '
                'practice, reaction_time, time_stamp\n')
 
-
-filename = _thisDir + os.sep + u'DNMS/DNMSlog/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
+filename = _thisDir + os.sep + u'Flanker/Flankerlog/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
 
 # save a log file for detail verbose info
 logFile = logging.LogFile(filename + '.log', level=logging.EXP)
@@ -44,13 +43,12 @@ class Flanker:
         self.start = start
         self.keys = ['a', 'p']
 
-
     def run(self):
         global good_answer
         L = ["<<<<<<<<<", ">>>><>>>>", ">>>><>>>>", ">>>>>>>>"]
         rnd = 0
-        score=0
-        i=0
+        score = 0
+        i = 0
         win = visual.Window(
             size=[1920, 1080],  # if needed, change the size in correspondance with your monitor
             fullscr=False,
@@ -397,12 +395,12 @@ class Flanker:
                     win.flip()
                     core.wait(5)
                 elif resp != good_ans:
-                    good_answer=False
+                    good_answer = False
                     missed.draw()
                     win.flip()
                     core.wait(5)
                 else:
-                    good_answer=None
+                    good_answer = None
                 dataFile.write(
                     str(i)
                     +
@@ -458,9 +456,9 @@ class Flanker:
             win.flip()
             resp, rt = self.get_response()
             if resp == "return":
-                training=True
-            elif (resp == 'a') or (resp == 'p') :
-                training=False
+                training = True
+            elif (resp == 'a') or (resp == 'p'):
+                training = False
         doigts.draw()
         win.flip()
         core.wait(5)
@@ -542,7 +540,7 @@ class Flanker:
         core.wait(2)
         good_day.draw()
         win.flip()
-        core.wait()
+        core.wait(5)
 
     def quit_experiment(self):
         exit()
@@ -553,12 +551,12 @@ class Flanker:
         Returns the pressed key and the reaction time.
         """
         rt_timer = core.MonotonicClock()
-        resp = event.waitKeys(keyList=['a', 'p'], timeStamped=rt_timer, maxWait=2, clearEvents = True)
-
+        resp = event.waitKeys(keyList=['a', 'p'], timeStamped=rt_timer, maxWait=2, clearEvents=True)
 
         if 'q' in resp[0]:
             self.quit_experiment()
         return resp[0][0], resp[0][1] * 1000  # key and rt in milliseconds
+
 
 start = time.time()
 exp = Flanker(start)
