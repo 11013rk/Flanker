@@ -17,7 +17,7 @@ BOLD is an acronym which stands for Blood Oxygenation-Level Dependent Signal. Ne
 Our goal is to estimate the magnitude of the BOLD signal to each condition, and then contrast (i.e., *take the difference of*) the two conditions to see whether they are significantly different from each other.
 
 ## What do I have to do before running the code?
-For this experiment, one should create a folder called Flankercsv in order to store the data.
+For this experiment, one should create a folder called *Flankercsv* in order to store the data.
 We recommend looking at the code before running it, as some changes will be needed - do not worry, the comments on the code are made in English -.
 The main change is the fact that the directory of the folder has to be changed, as the folder Flankercsv will not be stored at the same location from one's computer to another.
 Another common change is that the experiment is ran in French. However, it is very basic French and Google Translate should be able to help perfectly.
