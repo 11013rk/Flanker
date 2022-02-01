@@ -14,7 +14,7 @@ One can imagine that the task is easier if the central arrow points in the same 
 Subjects are typically slower and less accurate in the Incongruent condition, and faster and more accurate in the Congruent condition. 
 Since the difference in reaction times is robust and reliable, it follows that in our fMRI data we should see a noticeable difference in the BOLD signal as well.
 BOLD is an acronym which stands for Blood Oxygenation-Level Dependent Signal. Nearby oxygenated blood interferes less with the signal emitted by Hydrogen atoms than does deoxygenated blood.
-Our goal is to estimate the magnitude of the BOLD signal to each condition, and then contrast (i.e., take the difference of) the two conditions to see whether they are significantly different from each other.
+Our goal is to estimate the magnitude of the BOLD signal to each condition, and then contrast (i.e., *take the difference of*) the two conditions to see whether they are significantly different from each other.
 
 ## What do I have to do before running the code?
 For this experiment, one should create a folder called Flankercsv in order to store the data.
